@@ -14,3 +14,4 @@ class WordSearcher():
     def LoadPuzzle(self, puzzle):
         lines = puzzle.splitlines()
         self._words = lines[0].split(',')
+        self._puzzle = [line.split(',') for line in lines[1:]]

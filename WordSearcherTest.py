@@ -28,9 +28,17 @@ T,G,L,B,H,C,B,E,C,H,T,O,Y,I,K
 O,J,Y,E,U,L,N,C,C,L,Y,B,Z,U,H
 W,Z,M,I,S,U,K,U,R,B,I,D,U,X,S
 K,Y,L,B,Q,Q,P,M,D,F,C,K,E,A,B'''
+        self.WordSearcher.LoadPuzzle(self.puzzle)
+
     def test_RecognizesWords(self):
         self.setup()
-        self.WordSearcher.LoadPuzzle(self.puzzle)
         words = self.WordSearcher._words
-        self.assertEqual(words, ['BONES','KHAN','KIRK','SCOTTY','SPOCK','SULU','UHURA'])
-        
+        self.assertEqual(words, ['BONES', 'KHAN', 'KIRK', 'SCOTTY',
+                                 'SPOCK', 'SULU', 'UHURA'])
+
+    def test_LoadsPuzzleInto2dList(self):
+        self.setup()
+        puzzle = self.WordSearcher._puzzle
+        self.assertEqual(puzzle[0][0], 'U')
+        self.assertEqual(puzzle[5][2], 'O')
+        self.assertEqual(puzzle[3][5], 'E')
