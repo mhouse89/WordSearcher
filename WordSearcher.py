@@ -27,6 +27,12 @@ class WordSearcher():
                         location = RotateCoordinates(location, len(self._puzzle))
                     self._answers[word] = location
                     break
+                location = self.SearchDiagonallyDownForward(word)
+                if location:  # Found it
+                    for _ in range(self._RotationState):
+                        location = RotateCoordinates(location, len(self._puzzle))
+                    self._answers[word] = location
+                    break
                 self.RotatePuzzle()
         while self._RotationState != 0:  # Rotate back to orignal state after done
             self.RotatePuzzle()
@@ -48,6 +54,25 @@ class WordSearcher():
                         return location
         return []  # If it exits loop, it didn't find it
 
+    def SearchDiagonallyDownForward(self, word):
+        L = len(word)
+        for lineN, line in enumerate(self._puzzle):
+            LL = len(line)
+            for startN, start in enumerate(line[:LL-L+1]):
+                for letterN in range(L):
+                    current_line = lineN+letterN
+                    current_letter = startN+letterN
+                    if current_line >= len(self._puzzle) or \
+                       self._puzzle[current_line][current_letter] != word[letterN]:
+                        # Letter doesn't match
+                        break
+                    if letterN == L-1:  # Found full word
+                        location = []
+                        for i in range(L):
+                            location.append((startN+i, lineN+i))
+                        return location
+        return []  # If it exits loop, it didn't find it
+
     def RotatePuzzle(self):
         '''Rotates puzzle 90 degrees clockwise, so that I can use
         SearchHoizontallyForwards to find all horizontal and vertical words'''
@@ -56,7 +81,8 @@ class WordSearcher():
         self._RotationState = (self._RotationState + 1) % 4
         # Update rotation state, which will be used to calculate unrotated locations
 
+
 def RotateCoordinates(location,puzzle_width):
     '''Coordinates in rotated puzzle must be
     translated to unrotated coordinates'''
-    return [(loc[1],puzzle_width-1-loc[0]) for loc in location]
+    return [(loc[1], puzzle_width-1-loc[0]) for loc in location]

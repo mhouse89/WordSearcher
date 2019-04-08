@@ -64,3 +64,12 @@ K,Y,L,B,Q,Q,P,M,D,F,C,K,E,A,B'''
         self.setup()
         Answers = self.WordSearcher.solve()
         self.assertEqual(Answers['KHAN'], [(5, 9), (5, 8), (5, 7), (5, 6)])
+        
+    def test_FindsDiagonally(self):
+        self.setup()
+        Answers = self.WordSearcher.solve()
+        self.assertEqual(Answers['SPOCK'], [(2, 1), (3, 2), (4, 3),
+                         (5, 4), (6, 5)])
+        self.assertEqual(Answers['SULU'], [(3, 3), (2, 2), (1, 1), (0, 0)])
+        self.assertEqual(Answers['UHURA'], [(4, 0), (3, 1), (2, 2),
+                         (1, 3), (0, 4)])
