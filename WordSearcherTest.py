@@ -42,3 +42,9 @@ K,Y,L,B,Q,Q,P,M,D,F,C,K,E,A,B'''
         self.assertEqual(puzzle[0][0], 'U')
         self.assertEqual(puzzle[5][2], 'O')
         self.assertEqual(puzzle[3][5], 'E')
+
+    def test_FindsHozinallyForwards(self):
+        self.setup()
+        Answers = self.WordSearcher.solve()
+        self.assertEqual(Answers['SCOTTY'], [(0, 5), (1, 5), (2, 5),
+                         (3, 5), (4, 5), (5, 5)])
