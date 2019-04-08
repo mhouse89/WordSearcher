@@ -21,3 +21,6 @@ Created on Sun Apr  7 17:18:08 2019
 #                     loc.append((startN+i, lineN))
 #                 print(loc)
 # =============================================================================
+
+pr = list(zip(*p[::-1]))
+pr = [list(line) for line in pr]
