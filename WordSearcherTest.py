@@ -64,7 +64,7 @@ K,Y,L,B,Q,Q,P,M,D,F,C,K,E,A,B'''
         self.setup()
         Answers = self.WordSearcher.solve()
         self.assertEqual(Answers['KHAN'], [(5, 9), (5, 8), (5, 7), (5, 6)])
-        
+
     def test_FindsDiagonally(self):
         self.setup()
         Answers = self.WordSearcher.solve()
@@ -73,7 +73,7 @@ K,Y,L,B,Q,Q,P,M,D,F,C,K,E,A,B'''
         self.assertEqual(Answers['SULU'], [(3, 3), (2, 2), (1, 1), (0, 0)])
         self.assertEqual(Answers['UHURA'], [(4, 0), (3, 1), (2, 2),
                          (1, 3), (0, 4)])
-    
+
     def test_LoadsPuzzleFromFile(self):
         self.WordSearcher = WordSearcher()
         self.WordSearcher.LoadFromFile('Puzzle1.txt')
@@ -81,3 +81,15 @@ K,Y,L,B,Q,Q,P,M,D,F,C,K,E,A,B'''
         self.assertEqual(puzzle[0][0], 'U')
         self.assertEqual(puzzle[5][2], 'O')
         self.assertEqual(puzzle[3][5], 'E')
+
+    def test_OutputFormat(self):
+        self.setup()
+        _ = self.WordSearcher.solve()
+        answer = '''BONES: (0,6),(0,7),(0,8),(0,9),(0,10)
+KHAN: (5,9),(5,8),(5,7),(5,6)
+KIRK: (4,7),(3,7),(2,7),(1,7)
+SCOTTY: (0,5),(1,5),(2,5),(3,5),(4,5),(5,5)
+SPOCK: (2,1),(3,2),(4,3),(5,4),(6,5)
+SULU: (3,3),(2,2),(1,1),(0,0)
+UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)'''
+        self.assertEqual(self.WordSearcher.Output(), answer)

@@ -86,6 +86,20 @@ class WordSearcher():
         self._RotationState = (self._RotationState + 1) % 4
         # Update rotation state, which will be used to calculate unrotated locations
 
+    def Output(self):
+        '''Output crossword answers in requested format.  For this excercise,
+        I assume that all words exist in puzzle and that solve() is called
+        before Output.'''
+        output = ''
+        for word in self._words:
+            fstring = word + ': '
+            for location in self._answers[word]:
+                fstring += '(%s,%s),' % location
+            fstring = fstring[:len(fstring)-1]  # Remove final comma
+            output += fstring + '\n'
+        output = output[:len(output)-1] # Remove final \n
+        return output
+
 
 def RotateCoordinates(location,puzzle_width):
     '''Coordinates in rotated puzzle must be
