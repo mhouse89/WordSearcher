@@ -17,6 +17,11 @@ class WordSearcher():
         self._words = lines[0].split(',')
         self._puzzle = [line.split(',') for line in lines[1:]]
 
+    def LoadFromFile(self, file):
+        with open("Puzzle1.txt") as f:
+            puzzle = f.read()
+        self.LoadPuzzle(puzzle)
+
     def solve(self):
         self._answers = {}
         for word in self._words:

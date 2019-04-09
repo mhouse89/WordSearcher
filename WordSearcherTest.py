@@ -73,3 +73,11 @@ K,Y,L,B,Q,Q,P,M,D,F,C,K,E,A,B'''
         self.assertEqual(Answers['SULU'], [(3, 3), (2, 2), (1, 1), (0, 0)])
         self.assertEqual(Answers['UHURA'], [(4, 0), (3, 1), (2, 2),
                          (1, 3), (0, 4)])
+    
+    def test_LoadsPuzzleFromFile(self):
+        self.WordSearcher = WordSearcher()
+        self.WordSearcher.LoadFromFile('Puzzle1.txt')
+        puzzle = self.WordSearcher._puzzle
+        self.assertEqual(puzzle[0][0], 'U')
+        self.assertEqual(puzzle[5][2], 'O')
+        self.assertEqual(puzzle[3][5], 'E')
