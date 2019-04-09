@@ -18,7 +18,7 @@ class WordSearcher():
         self._puzzle = [line.split(',') for line in lines[1:]]
 
     def LoadFromFile(self, file):
-        with open("Puzzle1.txt") as f:
+        with open(file) as f:
             puzzle = f.read()
         self.LoadPuzzle(puzzle)
 
@@ -101,7 +101,7 @@ class WordSearcher():
         return output
 
 
-def RotateCoordinates(location,puzzle_width):
+def RotateCoordinates(location, puzzle_width):
     '''Coordinates in rotated puzzle must be
     translated to unrotated coordinates'''
     return [(loc[1], puzzle_width-1-loc[0]) for loc in location]
