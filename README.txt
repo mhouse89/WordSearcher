@@ -4,7 +4,7 @@ Library dependencies:
 unittest, sys (both in the python standary library)
 
 Running the python program "RunWordSearcher.py" will run the WordSearcher on "Puzzle1.txt" and print the output
-Run command: 
+Run command (all commands assume cd to WordSearcher folder): 
 python RunWordSearcher.py
 
 Adding a filename arguement to the command will allow you to run it on any desired txt file e.g.:
